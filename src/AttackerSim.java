@@ -1,3 +1,4 @@
+import java.util.*;
 public class AttackerSim {
     private String team;
     private String player;
@@ -29,6 +30,18 @@ public class AttackerSim {
         else{
             return badOutcomes[outcomePicker];
         }
+    }
+    public int checkOutcome(String outcome){
+        String[] goodOutcomes = {player + " dribbles right past", "INCREDIBLE " + player + " HAS DUSTED"};
+        for (int i = 0; i <goodOutcomes.length; i++){
+            if(goodOutcomes[i].equals(outcome)){
+                return 1;
+            }
+        }
+        return 0;
+    }
+    public void makeSub(String newPlayer){
+        player = newPlayer;
     }
 
 
