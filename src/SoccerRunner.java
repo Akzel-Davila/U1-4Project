@@ -1,3 +1,4 @@
+import java.util.Locale;
 import java.util.Scanner;
 public class SoccerRunner {
     public static void main(String[] args){
@@ -19,14 +20,32 @@ public class SoccerRunner {
         String opposingTeam = s.nextLine();
         System.out.println("Enter the opposing teams attacker:");
         String opposingPlayer = s.nextLine();
+        AttackerSim opposingAttack = new AttackerSim(opposingTeam, opposingTeam);
 
         //User enters the score for the game to end (Exit condition for the program)
         System.out.println("Enter how many goals the winning team should score to end the game:");
         int goalNum = Integer.parseInt(s.nextLine());
         int userTeamGoals = 0;
         int oppTeamGoals = 0;
+
         //While loop that will end once the target goals have been matched
+        int hasBall = userAttack.firstBall();
         while ((userTeamGoals!=goalNum) && (oppTeamGoals!=goalNum)){
+            if (hasBall == 1){
+                System.out.println(userTeam + " has the ball!");
+                System.out.println("Would you like " + userPlayer + " to go left or right?: ");
+                String direction = s.nextLine();
+                System.out.println("And would you look at that...");
+                direction = direction.toLowerCase(Locale.ROOT);
+                String message = userAttack.attackOutcome(direction);
+                System.out.println(message + " " + opposingPlayer);
+                int outcomeNum = userAttack.checkOutcome(message);
+
+
+            }
+            if(hasBall==2){
+                System.out.println("Code is working boss");
+            }
             oppTeamGoals++;
         }
 
