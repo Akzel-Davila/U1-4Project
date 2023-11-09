@@ -20,7 +20,7 @@ public class SoccerRunner {
         String opposingTeam = s.nextLine();
         System.out.println("Enter the opposing teams attacker:");
         String opposingPlayer = s.nextLine();
-        AttackerSim opposingAttack = new AttackerSim(opposingTeam, opposingTeam);
+        AttackerSim opposingAttack = new AttackerSim(opposingTeam, opposingPlayer);
 
         //User enters the score for the game to end (Exit condition for the program)
         System.out.println("Enter how many goals the winning team should score to end the game:");
@@ -31,7 +31,7 @@ public class SoccerRunner {
         //While loop that will end once the target goals have been matched
         int hasBall = userAttack.firstBall();
         while ((userTeamGoals!=goalNum) && (oppTeamGoals!=goalNum)){
-            if (hasBall == 1){
+            while (hasBall == 1){
                 System.out.println(userTeam + " has the ball!");
                 System.out.println("Would you like " + userPlayer + " to go left or right?: ");
                 String direction = s.nextLine();
@@ -40,6 +40,10 @@ public class SoccerRunner {
                 String message = userAttack.attackOutcome(direction);
                 System.out.println(message + " " + opposingPlayer);
                 int outcomeNum = userAttack.checkOutcome(message);
+                //Moves towards the defender stage
+                if (outcomeNum==1){
+                    System.out.println(userPlayer + " is now approaching the defender " + "");
+                }
 
 
             }

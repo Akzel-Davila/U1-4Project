@@ -26,7 +26,7 @@ public class AttackerSim {
             odds = 3;
         }
         else{odds = 1;}
-        int outcomeNum = (int) (Math.random() * 10)+odds;
+        int outcomeNum = (int) (Math.random() * (10-odds+1))+odds;
         int outcomePicker = (int) (Math.round(Math.random()));
         String[] goodOutcomes = {player + " dribbles right past", "INCREDIBLE " + player + " HAS DUSTED"};
         String[] badOutcomes = {"How embarrassing " + player + " has tripped and lost the ball to", "Yikes " + player + " could not win the 1v1 against"};
@@ -46,6 +46,16 @@ public class AttackerSim {
         }
         return 0;
     }
+    public boolean pastDefender(Integer moveNum){
+        int numPicker = (int) (Math.random() * 3)+1;
+        return numPicker == moveNum;
+    }
+    public boolean goalScored(Integer shootNum){
+        int success = (int) (Math.random() * 5)+1;
+        int success2 = (int) (Math.random() * 5)+1;
+        return (shootNum == success) || (shootNum == success2);
+    }
+
     public void makeSub(String newPlayer){
         player = newPlayer;
     }
