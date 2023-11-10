@@ -21,12 +21,12 @@ public class AttackerSim {
     }
     public String attackOutcome(String direction){
         int odds = 0;
-        String[] directions = {"placeholder","right", "left"};
-        if (direction.equals(directions[(int)(Math.random()*2)+1])){
+        String[] directions = {"right", "left"};
+        if (direction.equals(directions[(int) (Math.round(Math.random()))])){
             odds = 3;
         }
         else{odds = 1;}
-        int outcomeNum = (int) (Math.random() * (10-odds+1))+odds;
+        int outcomeNum = (int) (Math.random() * (10))+odds;
         int outcomePicker = (int) (Math.round(Math.random()));
         String[] goodOutcomes = {player + " dribbles right past", "INCREDIBLE " + player + " HAS DUSTED"};
         String[] badOutcomes = {"How embarrassing " + player + " has tripped and lost the ball to", "Yikes " + player + " could not win the 1v1 against"};
