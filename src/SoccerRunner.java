@@ -5,7 +5,7 @@ public class SoccerRunner {
         Scanner s = new Scanner(System.in);
         //The Program Welcomes the User
         System.out.println("Welcome to the Soccer Simulator!");
-        System.out.println("In this simulation you will chose your team and an attack and defender that will represent you");
+        System.out.println("In this simulation you will choose your team and an attack and defender that will represent you");
         System.out.println("You will also choose the opposing team along with their attacker and defender");
 
         //User Team
@@ -46,38 +46,41 @@ public class SoccerRunner {
                 int outcomeNum = userAttack.checkOutcome(message);
                 //Moves towards the defender stage
                 if (outcomeNum==1){
-                    System.out.println(userAttacker + " is now approaching the defender, get ready to type a number to choose a move!");
+                    System.out.println(userAttacker + " is now approaching " + opposingDefender);
                     System.out.println("Would you like to: \n [1] Attempt a rainbow flick \n [2] Attempt to dribble past the defender \n [3] Attempt a stepover");
                     int userMove = Integer.parseInt(s.nextLine());
                     boolean success = userAttack.pastDefender(userMove);
                     if (success){
                         System.out.println(userAttacker + " HAS SUCCESSFULLY MOVED PASSED " + opposingDefender);
                         System.out.println(userAttacker + " is now face to face with the goalie");
-                        System.out.println("Will " + userAttacker + " shoot: \n[1] Top right \n[2] Top left \n[3] Down the middle \n[4]  Right \n[5] left");
+                        System.out.println("Will " + userAttacker + " shoot: \n[1] Top right \n[2] Top left \n[3] Down the middle \n[4] Right \n[5] left");
                         int userShot = Integer.parseInt(s.nextLine());
                         boolean goal = userAttack.goalScored(userShot);
                         if (goal){
                             System.out.println("GOALLLLLLL");
-                            System.out.println(userAttacker + " HAS MADE " + userTeam + " PROUD");
+                            System.out.println(userAttacker + " HAS MADE " + userTeam.toUpperCase() + " PROUD");
                             userTeamGoals++;
                             System.out.println("The score is now " + userTeamGoals + "-" + oppTeamGoals);
                             hasBall=2;
                         }
                         else{
-                            System.out.print("AMAZING THE KEEPER SAVES THE BALL");
+                            System.out.println("AMAZING THE KEEPER SAVES THE BALL");
                             hasBall=2;
                         }
                     }
                     else{
-                        System.out.println("How unfortunate the defender has prediected " + userAttacker + "'s move and has stolen the ball");
+                        System.out.println("How unfortunate the defender has predicted " + userAttacker + "'s move and has stolen the ball");
                         hasBall=2;
                     }
+                }
+                else{
+                    hasBall = 2;
                 }
             }
             if(hasBall==2) {
                 System.out.println(opposingTeam + " has the ball!");
                 System.out.println(opposingAttacker + " is preparing to make a move!");
-                System.out.println("Would you like to go right or left?");
+                System.out.println("Would you like to defend right or left?");
                 String defenseDirect = s.nextLine();
                 defenseDirect = defenseDirect.toLowerCase();
                 String firstOutcome = userDefend.firstOutcome(defenseDirect);
@@ -92,10 +95,20 @@ public class SoccerRunner {
                     System.out.println(secondOutcome);
                     if (!pastDefender){
                         System.out.println(opposingAttacker + " is now approaching the goalie");
-                        System.out.println("Should the goalie defend: \n[1] Top right \n[2] Top left \n[3] Down the middle \n[4]  Right \n[5] left");
+                        System.out.println("Should the goalie defend: \n[1] Top right \n[2] Top left \n[3] Down the middle \n[4] Right \n[5] left");
                         int goalieMove = Integer.parseInt(s.nextLine());
-                        System.out.print("GOALLLLLL");
-                        hasBall=1;
+                        String thirdOutcome = userDefend.thirdOutcomes(goalieMove);
+                        System.out.println(thirdOutcome);
+                        boolean blockedGoal = userDefend.outcomeChecker(thirdOutcome);
+                        if (!blockedGoal){
+                            System.out.println("GOALLLLLLL");
+                            oppTeamGoals++;
+                            System.out.println("The score is now " + userTeamGoals + "-" + oppTeamGoals);
+                            hasBall = 1;
+                        }
+                        else{
+                            hasBall=1;
+                        }
                     }
                     else{
                         hasBall=1;

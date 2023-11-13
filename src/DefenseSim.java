@@ -21,12 +21,12 @@ public class DefenseSim{
     }
     public String secondCompMove(){
         String [] moves = {"nutmeg", "the cruyff turn", "stepover"};
-        int randomNum = (int) (Math.random()*4);
+        int randomNum = (int) (Math.random()*3);
         return moves[randomNum];
     }
     public String thirdCompMove(){
         String [] shot = {"Top right", "Top left", "Down the middle", "Right", "Left"};
-        int shotPicker =  (int) (Math.random()*6);
+        int shotPicker =  (int) (Math.random()*5);
         return shot[shotPicker];
     }
     public String firstOutcome(String userDirection) {
@@ -46,14 +46,29 @@ public class DefenseSim{
         String compMove = secondCompMove();
         String secondDefenseOutcome = "";
         if (defenseNum == randCompNum){
-            secondDefenseOutcome = opposingAttacker + " attemps the " + compMove + " \n BUT " + defender + " IS ABLE TO READ THE MOVE AND TAKE THE BALL";
+            secondDefenseOutcome = opposingAttacker + " attempts the " + compMove + " \nBUT " + defender + " IS ABLE TO READ THE MOVE AND TAKE THE BALL";
             goodOutcome = secondDefenseOutcome;
         }
         else{
-            secondDefenseOutcome = opposingAttacker + " attemps the " + compMove + "\n AND THEY ARE ABLE TO LOSE THE DEFENDER AND MAKE A RUN TOWARDS THE GOAL";
+            secondDefenseOutcome = opposingAttacker + " attempts the " + compMove + "\nAND THEY ARE ABLE TO LOSE THE DEFENDER AND MAKE A RUN TOWARDS THE GOAL";
             badOutcome = secondDefenseOutcome;
         }
         return secondDefenseOutcome;
+    }
+    public String thirdOutcomes (Integer blockNum){
+        int blocked = (int) (Math.random() * 5)+1;
+        int blocked2 = (int) (Math.random() * 5)+1;
+        String thirdDefenseOutcome = "";
+        String compShot = thirdCompMove();
+        if ((blockNum == blocked) || (blockNum == blocked2)) {
+            thirdDefenseOutcome = opposingAttacker + " shoots " + compShot + "\nAND THE GOALIE IS ABLE TO BLOCK IT" ;
+            goodOutcome = thirdDefenseOutcome;
+        }
+        else{
+            thirdDefenseOutcome = opposingAttacker + " shoots " + compShot + "\nAND HITS THE BACK OF THE NETTTTT";
+            badOutcome = thirdDefenseOutcome;
+        }
+        return thirdDefenseOutcome;
     }
     public boolean outcomeChecker(String userOutcome) {
         return goodOutcome.equals(userOutcome);

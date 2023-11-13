@@ -11,14 +11,6 @@ public class AttackerSim {
         int ballNum = (int)(Math.random()*2)+1;
         return ballNum;
     }
-    public void updateBall(int ballNum){
-        if (ballNum == 1){
-            ballNum = 2;
-        }
-        else{
-            ballNum = 1;
-        }
-    }
     public String attackOutcome(String direction){
         int odds = 0;
         String[] directions = {"right", "left"};
@@ -47,7 +39,7 @@ public class AttackerSim {
         return 0;
     }
     public boolean pastDefender(Integer moveNum){
-        int numPicker = (int) (Math.random() * 3)+1;
+        int numPicker = (int) (Math.random() * 3)+2;
         return numPicker == moveNum;
     }
     public boolean goalScored(Integer shootNum){
