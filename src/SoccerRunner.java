@@ -13,7 +13,7 @@ public class SoccerRunner {
         String userTeam = s.nextLine();
         System.out.println("Enter your teams attacker:");
         String userAttacker = s.nextLine();
-        AttackerSim userAttack = new AttackerSim(userTeam,userAttacker);
+        AttackerSim userAttack = new AttackerSim(userAttacker);
         System.out.println("Enter your teams defender: ");
         String userDefender = s.nextLine();
 
